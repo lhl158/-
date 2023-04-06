@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今天中午吃什么</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        height: 600px;
+        width: 600px;
+        background-color: #333;
+        margin: 100px auto;
+      }
+      ul li {
+        list-style: none;
+        height: 200px;
+        width: 200px;
+        background-color: #888;
+        border: 2px solid rgb(26, 27, 27);
+        font-size: 20px;
+        color: #fff;
+        line-height: 200px;
+        text-align: center;
+      }
+      li:nth-child(1) {
+        background-color: red;
+      }
+      li:nth-child(2) {
+        background-color: rgb(126, 57, 57);
+      }
+      li:nth-child(3) {
+        background-color: rgb(107, 153, 21);
+      }
+      li:nth-child(6) {
+        background-color: rgb(169, 63, 196);
+      }
+      li:nth-child(9) {
+        background-color: rgb(204, 18, 173);
+      }
+      li:nth-child(8) {
+        background-color: rgb(201, 112, 112);
+      }
+      li:nth-child(7) {
+        background-color: rgb(67, 33, 219);
+      }
+      li:nth-child(4) {
+        background-color: rgb(198, 212, 135);
+      }
+      button {
+        height: 50px;
+        width: 50px;
+      }
+      .select {
+        background-color: #fefcfcec !important;
+      }
+      background{
+        background-repeat:no-repeat;
+        background-size:100% 100%;
+        background-attachment: fixed;
+      }
+    </style>
+  </head>
+  <body background="2.jpg">
+    <ul>
+      <li>祥和兄弟土豆粉</li>
+      <li>七嬷嬷水煮肉片</li>
+      <li>原汁炖牛肉</li>
+      <li>四季抻面</li>
+      <li style="display: flex; justify-content: space-around; align-items: center">
+        <button>开始</button>
+        <button>停止</button>
+        <button>重新</button>
+      </li>
+      <li>排骨掌门</li>
+      <li>吉妈妈打卤面</li>
+      <li>小木屋拌饭</li>
+      <li>川悦麻辣烫</li>
+    </ul>
+    <script>
+      var timer
+      var boxList = document.querySelectorAll('li')
+      var btns = document.querySelectorAll('button')
+      let sortArr = [0, 1, 2, 5, 8, 7, 6, 3]
+      var i = -1
+      let dd = 500
+      btns[0].addEventListener('click', (e) => {
+        e.target.innerHTML = '开始'
+        e.target.disabled = true
+        if (!timer || timer !== undefined) {
+          timer = setInterval(() => {
+            i++
+            if (i === 8) {
+              i = 0
+            }
+            sortArr.forEach((item) => {
+              boxList[item].className = ''
+            })
+            boxList[sortArr[i]].className = 'select'
+          }, 20)
+          console.log(timer)
+        }
+        btns[1].addEventListener('click', () => {
+          clearInterval(timer)
+          e.target.disabled = false
+          e.target.innerHTML = '继续'
+        })
+        btns[2].addEventListener('click', () => {
+          e.target.disabled = false
+          e.target.innerHTML = '开始'
+          i = -1
+          clearInterval(timer)
+          sortArr.forEach((item) => {
+            boxList[item].className = ''
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
